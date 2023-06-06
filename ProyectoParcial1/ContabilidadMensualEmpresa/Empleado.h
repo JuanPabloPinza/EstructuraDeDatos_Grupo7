@@ -23,6 +23,8 @@ class Empleado{
 		std::string getCargo();
 		void setCedula(char* cedula);
 		char* getCedula(void);
+		double calcularSueldo();
+		
 		
 		Empleado();
 		Empleado(char* cedula,std::string nombre,std::string apellido,std::string cargo);

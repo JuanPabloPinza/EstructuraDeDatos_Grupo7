@@ -11,13 +11,27 @@
 	}
 	
 	Empleado::Empleado(char* cedula,std::string nombre,std::string apellido,std::string cargo){
+		
 		this->cedula=cedula;
 		this->nombre=nombre;
 		this->apellido=apellido;
 		this->cargo=cargo;
+		this->salario=calcularSueldo();
 	}
 	
 	Empleado::~Empleado(){
+	}
+	
+	double Empleado::calcularSueldo(){
+		if (cargo == "CEO") {
+            return 1500.0;
+        } else if (cargo == "Oficinista") {
+            return 800.0;
+        } else if (cargo == "Personal de Limpieza") {
+            return 450.0;
+        } else {
+            return 0.0; // Cargo inválido
+        }
 	}
 	
 	void Empleado::setNombre(std::string nombre){
@@ -54,3 +68,5 @@
 	char* Empleado::getCedula(void){
 		return cedula;
 	}
+	
+	

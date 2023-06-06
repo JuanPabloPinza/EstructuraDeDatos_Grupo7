@@ -8,7 +8,7 @@ int Menus::menuPrincipal(void){
 	Empleado emp1;
 	do{
 	system("cls");
-	std::cout<<"\n===========MENÚ============"<<std::endl;
+	std::cout<<"\n============MENU============"<<std::endl;
 	std::cout<<"1. Registro de Nuevo Empleado"<<std::endl;
 	std::cout<<"2. Modificar Empleado"<<std::endl;
 	std::cout<<"3. Eliminar un empleado"<<std::endl;
@@ -23,10 +23,13 @@ int Menus::menuPrincipal(void){
 	switch(opc){
 		case 1:
 			emp1=pedirDatosDeEmpleado();
-			std::cout<<"\n"<<emp1.getNombre();
-			std::cout<<"\n"<<emp1.getApellido();
-			std::cout<<"\n"<<emp1.getCargo();
-			std::cout<<"\n"<<emp1.getCedula();
+			std::cout<<"\n---------------------Usuario Registrado Exitosamente---------------------";
+			std::cout<<"\nNombre:   "<<emp1.getNombre();
+			std::cout<<"\nApellido: "<<emp1.getApellido();
+			std::cout<<"\nCargo:    "<<emp1.getCargo();
+			std::cout<<"\nCedula:   "<<emp1.getCedula();
+			std::cout<<"\nSalario:  "<<emp1.getSalario()<<"$\n";
+			
 			break;
 		case 2:
 			break;
@@ -58,22 +61,25 @@ Empleado Menus::pedirDatosDeEmpleado(){
 	bool boleanoCedula;
 
 
-	std::cout<<"\nIngrese la cédula del empleado a registrar: ";
-/*	do{
+	/*std::cout<<"\nIngrese la cedula del empleado a registrar: ";
+	std::cin>>cedula;*/
+	/*do{
 		std::cin>>cedula;
 		boleanoCedula=Validaciones::validarCedulaEcuatoriana(cedula); 
 	}while(boleanoCedula==false);*/
 	std::cout<<"\nIngrese el Nombre: ";
-	nombre = Validaciones::validarStrings();
+	std::cin>>nombre;
+	//nombre = Validaciones::validarStrings();
 	std::cout<<"\nIngrese el Apellido: ";
-	apellido = Validaciones::validarStrings();
-	/*std::cout<<"Ingrese el Salario: ";
-	//ESTE ES OPCIONAL YA QUE EL CARGO YA VA A INCLUIR EL SALARIO QUE VA A TENER.*/
-	cargo = pedirCargo();
-	Empleado empleado(cedula,nombre,apellido,cargo);
+	std::cin>>apellido;
+	//apellido = Validaciones::validarStrings();
 	
-	return empleado;
-	 
+	
+	
+	
+	Empleado empleado("1726723545",nombre,apellido,pedirCargo());
+	
+	return empleado;	 
 }
 
 std::string Menus::pedirCargo(void){
@@ -87,11 +93,11 @@ std::string Menus::pedirCargo(void){
 		opc=Validaciones::validarMenuOpc('1','3') ;	
 	
 	if(opc==1){
-			cargo = "CEO";
-		}else if(opc==2){
-			cargo = "Oficinista";
-		}else if(opc==3){
-			cargo = "Personal de Limpieza";
-		}
-		return cargo;
+		return "CEO";
+	}else if(opc==2){
+		return "Oficinista";
+	}else if(opc==3){
+		return "Personal de Limpieza";
+	}
+		
 }
