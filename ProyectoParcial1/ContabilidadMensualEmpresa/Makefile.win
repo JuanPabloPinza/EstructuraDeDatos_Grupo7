@@ -4,15 +4,15 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Menus.o Validaciones.o Empleado.o
-LINKOBJ  = main.o Menus.o Validaciones.o Empleado.o
+OBJ      = main.o Menus.o Validaciones.o Empleado.o Nodo.o ListaDoble.o
+LINKOBJ  = main.o Menus.o Validaciones.o Empleado.o Nodo.o ListaDoble.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
 BIN      = ProyectoContabilidadMensual.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
-DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -35,3 +35,9 @@ Validaciones.o: Validaciones.cpp
 
 Empleado.o: Empleado.cpp
 	$(CPP) -c Empleado.cpp -o Empleado.o $(CXXFLAGS)
+
+Nodo.o: Nodo.cpp
+	$(CPP) -c Nodo.cpp -o Nodo.o $(CXXFLAGS)
+
+ListaDoble.o: ListaDoble.cpp
+	$(CPP) -c ListaDoble.cpp -o ListaDoble.o $(CXXFLAGS)

@@ -8,7 +8,7 @@ class Validaciones{
 	public:
 	static int validarMenuOpc(char, char);
 	static char* validarStrings();
-	static bool validarCedulaEcuatoriana(const char* cedula);
+	static std::string validarCedulaEcuatoriana();
 	
 };
 

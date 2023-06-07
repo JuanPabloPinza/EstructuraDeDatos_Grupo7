@@ -1,0 +1,21 @@
+Nombre:   JUAN
+Apellido: PINZA
+Edad:     19
+Cargo:    CEO
+Cedula:   1755008925
+Salario:  1500
+---------------------------------
+Nombre:   ANDY
+Apellido: VEGA
+Edad:     30
+Cargo:    CEO
+Cedula:   1100848835
+Salario:  1500
+---------------------------------
+Nombre:   JUANITO
+Apellido: PINZA
+Edad:     20
+Cargo:    Personal de Limpieza
+Cedula:   1100848835
+Salario:  450
+---------------------------------

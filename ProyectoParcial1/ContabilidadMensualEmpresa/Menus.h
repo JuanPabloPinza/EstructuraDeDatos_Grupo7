@@ -8,7 +8,10 @@ class Menus{
 	int menuPrincipal(void);
 	Empleado pedirDatosDeEmpleado();
 	std::string pedirCargo(void);
-	
+	void cargarDatosDeArchivoEnLista();
+	void guardarEmpleadosEnArchivo(Empleado);
+	void imprimirArchivoTxt(void);
+	void buscarEmpleadoPorCedula();
 		
 };
 
