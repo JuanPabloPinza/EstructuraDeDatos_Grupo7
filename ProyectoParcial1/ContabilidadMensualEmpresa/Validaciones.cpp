@@ -1,4 +1,11 @@
-
+/*******************************
+ UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
+ Asignatura: Estructuras de Datos
+ Nombre: Juan Pablo Pinza Armijos
+ Fecha de creacion: 07/06/23 9:10
+ Fecha de modificacion: 31/05/23 10:10
+ Enunciado General: Conjunta 1 Parcial 1
+ ********************************/
 //REFERENCIAS: Validaciones - Stephen Drouet | Grupo 2
 #include "Validaciones.h"
 #include <iostream>
@@ -30,6 +37,45 @@ int Validaciones::validarMenuOpc(char cnum1, char cnum2) {
 
 	return atoi(entrada); // convierte la entrada a un número int y lo retorna
 }
+
+int Validaciones::validarEdad() {
+    while (true) {
+        std::string entrada;
+        std::cout << "\nIngrese la edad [18 - 80]: ";
+        std::cin >> entrada;
+
+        try {
+            int edad = std::stoi(entrada);
+            if (edad >= 18 && edad <= 80) {
+                return edad;
+            } else {
+                std::cout << "Edad invalida. Intente nuevamente." << std::endl;
+            }
+        } catch (std::exception& e) {
+            std::cout << "Entrada invalida. Intente nuevamente." << std::endl;
+        }
+    }
+}
+
+int Validaciones::validarAnioDeContratacion() {
+    while (true) {
+        std::string entrada;
+        std::cout << "\nIngrese el anioo de contratacion [2000 - 2023]: ";
+        std::cin >> entrada;
+
+        try {
+            int anio = std::stoi(entrada);
+            if (anio >= 2000 && anio <= 2023) {
+                return anio;
+            } else {
+                std::cout << "Anioo de contratación invalido. Intente nuevamente." << std::endl;
+            }
+        } catch (std::exception& e) {
+            std::cout << "Entrada invalida. Intente nuevamente." << std::endl;
+        }
+    }
+}
+
 
 char* Validaciones::validarStrings(){
 	char *dato=new char[0];

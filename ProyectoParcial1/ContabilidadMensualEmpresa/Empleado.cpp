@@ -1,7 +1,14 @@
+/*******************************
+ UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
+ Asignatura: Estructuras de Datos
+ Nombre: Juan Pablo Pinza Armijos
+ Fecha de creacion: 07/06/23 9:10
+ Fecha de modificacion: 31/05/23 10:10
+ Enunciado General: Conjunta 1 Parcial 1
+ ********************************/
 #include "Empleado.h"
 #include <iostream>
 
-//Implementamos:
 	Empleado::Empleado(){
 		this->cedula = "";	
 		this->nombre ="";
@@ -9,6 +16,7 @@
 		this->salario = 0.0;
 		this->cargo="";
 		this->edad = 0;
+		this->anioDeContratacion = 0;
 	}
 	
 	Empleado::Empleado(std::string cedula,std::string nombre,std::string apellido, int edad, std::string cargo){
@@ -19,6 +27,17 @@
 		this->cargo=cargo;
 		this->salario=calcularSueldo();
 		this->edad=edad;
+	}
+	
+	Empleado::Empleado(std::string cedula,std::string nombre,std::string apellido, int edad, std::string cargo, int anioDeContratacion){
+		
+		this->cedula=cedula;
+		this->nombre=nombre;
+		this->apellido=apellido;
+		this->cargo=cargo;
+		this->salario=calcularSueldo();
+		this->edad=edad;
+		this->anioDeContratacion = anioDeContratacion;
 	}
 	
 	Empleado::~Empleado(){
@@ -40,7 +59,9 @@ std::ostream& operator<<(std::ostream& os, const Empleado& empleado) {
     os << "Nombre: " << empleado.nombre << " " << empleado.apellido << std::endl
        << "Edad: " << empleado.edad << std::endl
        << "Cedula: " << empleado.cedula << std::endl
-       << "Cargo: " << empleado.cargo << std::endl;
+       << "Cargo: " << empleado.cargo << std::endl
+       << "Salario: $" << empleado.salario<< std::endl
+       << "Anio de Contratacion: "<<empleado.anioDeContratacion << std::endl;
     return os;
 }
 	
@@ -86,5 +107,14 @@ std::ostream& operator<<(std::ostream& os, const Empleado& empleado) {
 	int Empleado::getEdad (){
 		return edad;
 	}
+	
+	void Empleado::setAnioDeContratacion(int anioDeContratacion){
+		this->anioDeContratacion=anioDeContratacion;
+	}
+	
+	int Empleado::getAnioDeContratacion(){
+		return anioDeContratacion;
+	}
+	
 	
 	
