@@ -41,14 +41,25 @@
 		this->anioDeContratacion = anioDeContratacion;
 	}
 	
+	Empleado::Empleado(std::string cedula,std::string nombre,std::string apellido, int edad, std::string cargo, double salario, int anioDeContratacion){
+		
+		this->cedula=cedula;
+		this->nombre=nombre;
+		this->apellido=apellido;
+		this->cargo=cargo;
+		this->salario=salario;
+		this->edad=edad;
+		this->anioDeContratacion = anioDeContratacion;
+	}
+	
 	Empleado::~Empleado(){
 	}
 	
 	double Empleado::calcularSueldo(){
 		if (cargo == "CEO") {
-            return 1500.0;
+            return 1500.50;
         } else if (cargo == "Oficinista") {
-            return 800.0;
+            return 800.49;
         } else if (cargo == "Personal de Limpieza") {
             return 450.0;
         } else {

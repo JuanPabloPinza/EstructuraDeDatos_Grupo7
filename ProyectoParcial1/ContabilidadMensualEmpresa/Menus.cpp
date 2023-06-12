@@ -25,13 +25,14 @@ int Menus::menuPrincipal(void){
 	std::string cedula;
 	double totalAPagar;
 	//AL LLAMAR AL MENÚ, PRIMERO CREAMOS UNA LISTA DOBLEMENTE ENLAZADA CON LOS DATOS DEL ARCHIVO
-	Nodo<Empleado>* nodo;
-	
 	//Creamos una lista doblemente enlazada
+	//ListaDoble<Empleado>* empleadosRegistrados = new ListaDoble<Empleado>();
+	//empleadosRegistrados = cargarDatosDeArchivoEnLista(empleadosRegistrados);
+	do{
+	Nodo<Empleado>* nodo;
 	ListaDoble<Empleado>* empleadosRegistrados = new ListaDoble<Empleado>();
 	empleadosRegistrados = cargarDatosDeArchivoEnLista(empleadosRegistrados);
-	
-	do{
+
 	system("cls");
 	std::cout<<"\n============PROGRAMA DE REGISTRO============"<<std::endl;
 	std::cout<<"1. Registro de Nuevo Empleado"<<std::endl;
@@ -73,6 +74,7 @@ switch(opc){
 			empleadosRegistrados->imprimirPorAnioDeContratacion(anio);
 			break;
 		case 3:
+			//empleadosRegistrados = cargarDatosDeArchivoEnLista(empleadosRegistrados);
 			empleadosRegistrados->mostrar();
 			break;
 		case 4:
@@ -169,7 +171,7 @@ void Menus::guardarEmpleadosEnArchivo(Empleado emp1) {
     archive <<"\nSalario:  "<<emp1.getSalario();
     archive <<"\nAnio De Contratacion:  "<<emp1.getAnioDeContratacion();
     archive << "\n---------------------------------" << std::endl;
-}
+	}
     archive.close(); 
 }
 
@@ -189,7 +191,7 @@ void Menus::imprimirArchivoTxt() {
 
     entrada.close();
 }
-
+/*
 //Cargar los Empleados desde un archivo de texto
 template <typename T>
 ListaDoble<T>* Menus::cargarDatosDeArchivoEnLista(ListaDoble<T>* empleadosRegistrados){
@@ -226,7 +228,46 @@ ListaDoble<T>* Menus::cargarDatosDeArchivoEnLista(ListaDoble<T>* empleadosRegist
     }
     file.close();
     return empleadosRegistrados;
+}*/
+
+template <typename T>
+ListaDoble<T>* Menus::cargarDatosDeArchivoEnLista(ListaDoble<T>* empleadosRegistrados){
+
+	std::ifstream file("empleados.txt");
+	if (!file) {
+        std::cerr << "No se ha podido abrir el archivo\n";
+        menuPrincipal();
+    }
+	
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.find("Nombre:") != std::string::npos) {
+            std::string nombre = line.substr(10);  // Extrae el nombre del Empleado
+            std::getline(file, line);
+            std::string apellido = line.substr(10);  // Extrae el Apellido del Empleado
+            std::getline(file, line);
+            int edad = std::stoi(line.substr(10));  // Extrae la edad del Empleado
+            std::getline(file, line);
+            std::string cargo = line.substr(10);  // Extrae el cargo del Empleado
+            std::getline(file, line);
+            std::string cedula = line.substr(10);  // Extrae la cédula del Empleado
+            std::getline(file, line);
+            double salario = std::stod(line.substr(10));  // Extrae el salario del Empleado
+            std::getline(file, line);
+			int anioDeContratacion = std::stoi(line.substr(23));    // Extrae el año de contratacion del Empleado
+
+			//Crear el Objeto Empleado
+			//Empleado empleado(cedula,nombre,apellido,edad,cargo,anioDeContratacion);
+			Empleado empleado(cedula,nombre,apellido,edad,cargo,salario,anioDeContratacion);
+			
+            // Inserta el empleado en la lista
+            empleadosRegistrados->insertar(empleado);
+        }
+    }
+    file.close();
+    return empleadosRegistrados;
 }
+
 
 template <typename T>
 void Menus::modificarEmpleado(std::string cedula,ListaDoble<T>* empleadosRegistrados) {

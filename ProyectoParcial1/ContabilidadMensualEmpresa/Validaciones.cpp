@@ -101,7 +101,7 @@ int Validaciones::validarAnioDeContratacion() {
 	}
 }
 
-
+/*
 char* Validaciones::validarStrings(){
 	char* dato = new char[1];  // Se inicializa con espacio para un carácter
     char c;
@@ -120,6 +120,42 @@ char* Validaciones::validarStrings(){
             dato[i++] = toupper(c);
             printf("%c", c);
             hayCaracter = true;
+        }
+    }
+
+    dato[i] = '\0';
+
+    if (!hayCaracter || i == 0) {
+        // Si no se ha ingresado ningún carácter o si se borraron todos los caracteres, se pide al usuario que ingrese nuevamente
+        delete[] dato;
+        return validarStrings();
+    }
+
+    return dato;
+}
+*/
+
+//ESTA VALIDACIÓN TAMBIÉN NOS PERMITE INGRESAR UN MÁXIMO DE 20 CARACTERES
+char* Validaciones::validarStrings() {
+    char* dato = new char[21];  // Se inicializa con espacio para 20 caracteres
+    char c;
+    int i = 0;
+    bool hayCaracter = false;  // Variable para verificar si se ha ingresado al menos un carácter
+
+    while ((c = getch()) != 13) {
+        if (c == 8) {
+            if (i > 0) {
+                i--;
+                putchar(8);
+                putchar(32);
+                putchar(8);
+            }
+        } else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            if (i < 20) {  // Verificar que no se haya alcanzado el límite de 20 caracteres
+                dato[i++] = toupper(c);
+                printf("%c", c);
+                hayCaracter = true;
+            }
         }
     }
 

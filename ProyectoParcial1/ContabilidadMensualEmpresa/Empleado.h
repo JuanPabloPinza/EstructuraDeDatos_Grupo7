@@ -44,6 +44,7 @@ class Empleado{
 		Empleado();
 		Empleado(std::string cedula,std::string nombre,std::string apellido,int edad, std::string cargo);
 		Empleado(std::string cedula,std::string nombre,std::string apellido,int edad, std::string cargo, int anioDeContratacion);
+		Empleado(std::string cedula,std::string nombre,std::string apellido, int edad, std::string cargo, double salario, int anioDeContratacion);
 		~Empleado();
 };
 

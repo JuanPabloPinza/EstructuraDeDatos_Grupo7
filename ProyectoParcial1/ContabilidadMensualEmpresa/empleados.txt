@@ -1,48 +1,40 @@
-Nombre:   JUANITO
-Apellido: ZEN
+Nombre:   PETER
+Apellido: PARKER
 Edad:     29
 Cargo:    CEO
-Cedula:   1100844883
-Salario:  1500
-Anio De Contratacion:  2001
----------------------------------
-Nombre:   MODIFICADO
-Apellido: MAN
-Edad:     20
-Cargo:    CEO
-Cedula:   1708709223
-Salario:  1500
-Anio De Contratacion:  2023
----------------------------------
-Nombre:   DOS
-Apellido: ZEN
-Edad:     29
-Cargo:    CEO
-Cedula:   1100844883
-Salario:  1500
-Anio De Contratacion:  2004
----------------------------------
-Nombre:   TRES
-Apellido: ZEN
-Edad:     29
-Cargo:    CEO
-Cedula:   1100844883
-Salario:  1500
-Anio De Contratacion:  2005
----------------------------------
-Nombre:   CUATRO
-Apellido: ZEN
-Edad:     29
-Cargo:    CEO
-Cedula:   1100844883
-Salario:  1500
-Anio De Contratacion:  2001
----------------------------------
-Nombre:   DYLAN
-Apellido: XD
-Edad:     20
-Cargo:    CEO
-Cedula:   1717572182
-Salario:  1500
+Cedula:   1100848835
+Salario:  1500.5
 Anio De Contratacion:  2021
+---------------------------------
+Nombre:   MARCO
+Apellido: P
+Edad:     39
+Cargo:    Oficinista
+Cedula:   1708709223
+Salario:  800.21
+Anio De Contratacion:  2000
+---------------------------------
+Nombre:   MARCELO
+Apellido: P
+Edad:     39
+Cargo:    Oficinista
+Cedula:   1718972597
+Salario:  800.33
+Anio De Contratacion:  2000
+---------------------------------
+Nombre:   MILAN
+Apellido: P
+Edad:     39
+Cargo:    Oficinista
+Cedula:   1726791641
+Salario:  800
+Anio De Contratacion:  2000
+---------------------------------
+Nombre:   ANEETH
+Apellido: BRONCANO
+Edad:     20
+Cargo:    Personal de Limpieza
+Cedula:   1724976251
+Salario:  450
+Anio De Contratacion:  2000
 ---------------------------------
