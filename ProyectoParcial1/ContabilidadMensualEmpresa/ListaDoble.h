@@ -1,10 +1,11 @@
 /*******************************
  UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
  Asignatura: Estructuras de Datos
- Nombre: Juan Pablo Pinza Armijos
- Fecha de creacion: 07/06/23 9:10
- Fecha de modificacion: 31/05/23 10:10
- Enunciado General: Conjunta 1 Parcial 1
+ Grupo 7
+ Integrantes: Juan Pablo Pinza, Sebastián Lasso, Dylan Alvarado
+ Fecha de creacion: 31/05/23 9:10
+ Fecha de modificacion: 10/06/23 10:10
+ Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 #ifndef LISTADOBLE_H
 #define LISTADOBLE_H
@@ -27,8 +28,9 @@ class ListaDoble{
 	    void mostrar();
 	    void eliminarPorCedula(std::string cedula);
 	    void guardarListaEnArchivo();
-	    void mostrarAnioDeContratacion(int anio);
+	    void imprimirPorAnioDeContratacion(int anio);
 	    void modificar(T, T);
+	    double sumaDeSueldosTotales();
 };
 
 #endif

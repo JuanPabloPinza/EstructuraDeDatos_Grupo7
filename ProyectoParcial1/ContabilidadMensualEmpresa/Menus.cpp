@@ -1,10 +1,11 @@
 /*******************************
  UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
  Asignatura: Estructuras de Datos
- Nombre: Juan Pablo Pinza Armijos
- Fecha de creacion: 07/06/23 9:10
- Fecha de modificacion: 31/05/23 10:10
- Enunciado General: Conjunta 1 Parcial 1
+ Grupo 7
+ Integrantes: Juan Pablo Pinza, Sebastián Lasso, Dylan Alvarado
+ Fecha de creacion: 31/05/23 9:10
+ Fecha de modificacion: 10/06/23 10:10
+ Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 
 #include <iostream>
@@ -22,6 +23,7 @@ int Menus::menuPrincipal(void){
 	int anio;
 	Empleado emp1;
 	std::string cedula;
+	double totalAPagar;
 	//AL LLAMAR AL MENÚ, PRIMERO CREAMOS UNA LISTA DOBLEMENTE ENLAZADA CON LOS DATOS DEL ARCHIVO
 	Nodo<Empleado>* nodo;
 	
@@ -36,31 +38,39 @@ int Menus::menuPrincipal(void){
 	std::cout<<"2. Lista de Empleados Contratados por anio"<<std::endl;	
 	std::cout<<"3. Mostrar Registro de Usuarios"<<std::endl;
 	std::cout<<"4. Eliminar un empleado"<<std::endl;
-	std::cout<<"5. Salir"<<std::endl;
+	std::cout<<"5. Modificar Empleado"<<std::endl;
+	std::cout<<"6. Total a Pagar Del Mes a los Empleados: "<<std::endl;
+	std::cout<<"7. Salir"<<std::endl;
 	std::cout<<"\nPor favor, seleccione una opcion: ";
 	
 	
-	opc=Validaciones::validarMenuOpc('1', '5');
+	opc=Validaciones::validarMenuOpc('1', '7');
 	
 switch(opc){
 		case 1:
-			emp1=pedirDatosDeEmpleado();
-			guardarEmpleadosEnArchivo(emp1);
-			std::cout<<"\n---------------------Usuario Registrado Exitosamente---------------------";
-			std::cout<<"\nNombre:   "<<emp1.getNombre();
-			std::cout<<"\nApellido: "<<emp1.getApellido();
-			std::cout<<"\nEdad:     "<<emp1.getEdad();
-			std::cout<<"\nCargo:    "<<emp1.getCargo();
-			std::cout<<"\nCedula:   "<<emp1.getCedula();
-			std::cout<<"\nSalario:  "<<"$"<<emp1.getSalario()<<"\n";
-			empleadosRegistrados = cargarDatosDeArchivoEnLista(empleadosRegistrados);
+				std::cout<<"\nIngrese la Cedula: ";
+				cedula = Validaciones::validarCedulaEcuatoriana();
+				nodo = empleadosRegistrados->buscar(cedula);
+				if (nodo == nullptr) {	
+					emp1=pedirDatosDeEmpleado(cedula);
+					guardarEmpleadosEnArchivo(emp1);
+					std::cout << "Dato ingresado correctamente" << std::endl;
+					std::cout<<"\n---------------------Usuario Registrado Exitosamente---------------------";
+					std::cout<<"\nNombre:   "<<emp1.getNombre();
+					std::cout<<"\nApellido: "<<emp1.getApellido();
+					std::cout<<"\nEdad:     "<<emp1.getEdad();
+					std::cout<<"\nCargo:    "<<emp1.getCargo();
+					std::cout<<"\nCedula:   "<<emp1.getCedula();
+					std::cout<<"\nContrato desde: "<<emp1.getAnioDeContratacion();
+					std::cout<<"\nSalario:  "<<"$"<<emp1.getSalario()<<"\n";
+				} else {
+					std::cout << "Cedula anteriormente registrada" << std::endl;				
+				}
 			break;
 		case 2:
-			//ESTE AÚN NO VALE, HAY QUE IMPLEMENTAR
 			std::cout<<"Ingrese El Anio de Contratacion: ";
 			anio = Validaciones::validarAnioDeContratacion();
-			//empleadosRegistrados->mostrarAnioDeContratacion(anio);
-			empleadosRegistrados->mostrar();
+			empleadosRegistrados->imprimirPorAnioDeContratacion(anio);
 			break;
 		case 3:
 			empleadosRegistrados->mostrar();
@@ -73,9 +83,14 @@ switch(opc){
 		    empleadosRegistrados->guardarListaEnArchivo();
 		    break;
 		case 5:
-			exit(0);
-			break;
+			std::cout << "Ingrese la cedula del empleado del cual quiere modificar los datos: ";
+		    cedula = Validaciones::validarCedulaEcuatoriana();
+		    modificarEmpleado(cedula, empleadosRegistrados);
+		    break;
 		case 6:
+			//CASO A IMPLEMENTAR:
+			totalAPagar = empleadosRegistrados->sumaDeSueldosTotales();
+			std::cout<<"El total a pagar este mes es: "<< totalAPagar <<std::endl;
 			
 			//imprimirArchivoTxt();
 			break;
@@ -87,27 +102,28 @@ switch(opc){
 			break;
 	}
 	system("PAUSE");
-}while(opc!=5);
+}while(opc!=7);
 	return 0;
 }
 
-Empleado Menus::pedirDatosDeEmpleado(){
+Empleado Menus::pedirDatosDeEmpleado(std::string cedula){
 	
 	std::string nombre;
 	std::string apellido;
 	std::string cargo;
-	std::string cedula;
+	
 	bool boleanoCedula;
 	int anioDeContratacion;
 	int edad;
-
-	std::cout<<"\nIngrese la Cedula: ";
-	cedula = Validaciones::validarCedulaEcuatoriana();
+	
+	
 	std::cout<<"\nIngrese el Nombre: ";
 	nombre = Validaciones::validarStrings();
 	std::cout<<"\nIngrese el Apellido: ";
 	apellido = Validaciones::validarStrings();
+	std::cout<<"\nIngrese su edad: ";
 	edad = Validaciones::validarEdad();
+	std::cout<<"\nIngrese el anio en el que fue contratado: ";
 	anioDeContratacion = Validaciones::validarAnioDeContratacion();
 	cargo = pedirCargo();
 	
@@ -212,4 +228,31 @@ ListaDoble<T>* Menus::cargarDatosDeArchivoEnLista(ListaDoble<T>* empleadosRegist
     return empleadosRegistrados;
 }
 
+template <typename T>
+void Menus::modificarEmpleado(std::string cedula,ListaDoble<T>* empleadosRegistrados) {
+    Nodo<Empleado>* nodo = empleadosRegistrados->buscar(cedula);
+
+    if (nodo != nullptr) {
+        Empleado empleadoActual = nodo->getDato();
+        Empleado nuevoEmpleado = pedirDatosDeEmpleado(cedula);
+
+        // Modificar los atributos necesarios del empleado actual con los valores del nuevo empleado
+        empleadoActual.setNombre(nuevoEmpleado.getNombre());
+        empleadoActual.setApellido(nuevoEmpleado.getApellido());
+        empleadoActual.setEdad(nuevoEmpleado.getEdad());
+        empleadoActual.setCargo(nuevoEmpleado.getCargo());
+        empleadoActual.setSalario(nuevoEmpleado.getSalario());
+        empleadoActual.setAnioDeContratacion(nuevoEmpleado.getAnioDeContratacion());
+
+        // Actualizar el nodo con el nuevo empleado modificado
+        nodo->setDato(empleadoActual);
+
+        // Guardar la lista actualizada en el archivo
+        empleadosRegistrados->guardarListaEnArchivo();
+
+        std::cout << "Empleado modificado correctamente." << std::endl;
+    } else {
+        std::cout << "Empleado no encontrado." << std::endl;
+    }
+}
 

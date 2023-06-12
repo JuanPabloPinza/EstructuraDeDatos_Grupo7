@@ -1,10 +1,11 @@
 /*******************************
  UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
  Asignatura: Estructuras de Datos
- Nombre: Juan Pablo Pinza Armijos
- Fecha de creacion: 07/06/23 9:10
- Fecha de modificacion: 31/05/23 10:10
- Enunciado General: Conjunta 1 Parcial 1
+ Grupo 7
+ Integrantes: Juan Pablo Pinza, Sebastián Lasso, Dylan Alvarado
+ Fecha de creacion: 31/05/23 9:10
+ Fecha de modificacion: 10/06/23 10:10
+ Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 #ifndef MENUS_H
 #define MENUS_H
@@ -15,11 +16,12 @@ class Menus{
 	
 	public:
 	int menuPrincipal(void);
-	Empleado pedirDatosDeEmpleado();
+	Empleado pedirDatosDeEmpleado(std::string);
 	std::string pedirCargo(void);
 	template <typename T>
+	void modificarEmpleado(std::string cedula,ListaDoble<T>* empleadosRegistrados);
+	template <typename T>
 	ListaDoble<T>* cargarDatosDeArchivoEnLista(ListaDoble<T>* empleadosRegistrados);
-	
 	void guardarEmpleadosEnArchivo(Empleado);
 	void imprimirArchivoTxt(void);
 	void buscarEmpleadoPorCedula();

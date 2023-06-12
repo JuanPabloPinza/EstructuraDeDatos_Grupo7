@@ -1,10 +1,11 @@
 /*******************************
  UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
  Asignatura: Estructuras de Datos
- Nombre: Juan Pablo Pinza Armijos
- Fecha de creacion: 07/06/23 9:10
- Fecha de modificacion: 31/05/23 10:10
- Enunciado General: Conjunta 1 Parcial 1
+ Grupo 7
+ Integrantes: Juan Pablo Pinza, Sebastián Lasso, Dylan Alvarado
+ Fecha de creacion: 31/05/23 9:10
+ Fecha de modificacion: 10/06/23 10:10
+ Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 //REFERENCIAS: Validaciones - Stephen Drouet | Grupo 2
 #include "Validaciones.h"
@@ -37,68 +38,100 @@ int Validaciones::validarMenuOpc(char cnum1, char cnum2) {
 
 	return atoi(entrada); // convierte la entrada a un número int y lo retorna
 }
-
+bool Validaciones::validarEdad(int anio){
+    return (anio>= 18 && anio<= 60);
+}
 int Validaciones::validarEdad() {
+     while (true) {
+    char *entrada = new char[2];
+    char tecla;
+    int i = 0;
     while (true) {
-        std::string entrada;
-        std::cout << "\nIngrese la edad [18 - 80]: ";
-        std::cin >> entrada;
+        tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 
-        try {
-            int edad = std::stoi(entrada);
-            if (edad >= 18 && edad <= 80) {
-                return edad;
-            } else {
-                std::cout << "Edad invalida. Intente nuevamente." << std::endl;
-            }
-        } catch (std::exception& e) {
-            std::cout << "Entrada invalida. Intente nuevamente." << std::endl;
+        if (tecla == '\r' && i == 2){ // si el usuario presiona Enter
+          std::cout << std::endl;
+          break;
+        } else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada
+            i--;
+            std::cout << "\b \b"; // borra el último caracter de la consola
+            entrada[i] = 0; // elimina el último caracter de la entrada
+        } else if (i<2 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
+            entrada[i++] = tecla;
+            std::cout << tecla; // muestra el caracter ingresado en la consola
         }
+    }
+        int entrada1 = atoi(entrada);
+        if(validarEdad(entrada1)){
+            return entrada1;
+        };
+        delete[] entrada;
+        std::cout << "Edad no permitida. Intente nuevamente: ";
     }
 }
-
+bool Validaciones::validarC(int anio){
+    return (anio>= 2000 && anio<= 2023);
+}
 int Validaciones::validarAnioDeContratacion() {
     while (true) {
-        std::string entrada;
-        std::cout << "\nIngrese el anioo de contratacion [2000 - 2023]: ";
-        std::cin >> entrada;
-
-        try {
-            int anio = std::stoi(entrada);
-            if (anio >= 2000 && anio <= 2023) {
-                return anio;
-            } else {
-                std::cout << "Anioo de contratación invalido. Intente nuevamente." << std::endl;
-            }
-        } catch (std::exception& e) {
-            std::cout << "Entrada invalida. Intente nuevamente." << std::endl;
-        }
-    }
+	char *entrada = new char[4];
+	char tecla;
+	int i = 0;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		
+		if (tecla == '\r' && i == 4){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<4 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
+			entrada[i++] = tecla;
+			std::cout << tecla; // muestra el caracter ingresado en la consola
+		}
+	}
+		int entrada1 = atoi(entrada);
+		if(validarC(entrada1)){
+			return entrada1;
+		};
+		delete[] entrada;
+        std::cout << "Anio invalido. Intente nuevamente: ";		
+	}
 }
 
 
 char* Validaciones::validarStrings(){
-	char *dato=new char[0];
-	char c;
-	int i=0;    
-	
-	while((c=getch())!=13) {
-		if(c>='A' && c<='Z' ||c>='a' && c<='z'){ 
-			dato[i++]=toupper(c);
-			printf("%c",c);
-		}else if(c==8 && i!=0){
-		
-			*(dato+(i-1))=0;
-			i--;
-				
-			putchar(8);
-			putchar(32);
-			putchar(8);			
-		}
-	}
-	dato[i]='\0';
-	return dato;
-	delete []dato;
+	char* dato = new char[1];  // Se inicializa con espacio para un carácter
+    char c;
+    int i = 0;
+    bool hayCaracter = false;  // Variable para verificar si se ha ingresado al menos un carácter
+
+    while ((c = getch()) != 13) {
+        if (c == 8) {
+            if (i > 0) {
+                i--;
+                putchar(8);
+                putchar(32);
+                putchar(8);
+            }
+        } else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            dato[i++] = toupper(c);
+            printf("%c", c);
+            hayCaracter = true;
+        }
+    }
+
+    dato[i] = '\0';
+
+    if (!hayCaracter || i == 0) {
+        // Si no se ha ingresado ningún carácter o si se borraron todos los caracteres, se pide al usuario que ingrese nuevamente
+        delete[] dato;
+        return validarStrings();
+    }
+
+    return dato;
 }
 
 std::string Validaciones::validarCedulaEcuatoriana() {

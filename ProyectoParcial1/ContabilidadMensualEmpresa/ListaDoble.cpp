@@ -1,10 +1,11 @@
 /*******************************
  UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)
  Asignatura: Estructuras de Datos
- Nombre: Juan Pablo Pinza Armijos
- Fecha de creacion: 07/06/23 9:10
- Fecha de modificacion: 31/05/23 10:10
- Enunciado General: Conjunta 1 Parcial 1
+ Grupo 7
+ Integrantes: Juan Pablo Pinza, Sebastián Lasso, Dylan Alvarado
+ Fecha de creacion: 31/05/23 9:10
+ Fecha de modificacion: 10/06/23 10:10
+ Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 #include "ListaDoble.h"
 #include "Empleado.h"
@@ -152,15 +153,34 @@ void ListaDoble<T>::mostrar() {
 
 
 template<typename T>
-void ListaDoble<T>::mostrarAnioDeContratacion(int anio) {
+void ListaDoble<T>::imprimirPorAnioDeContratacion(int anio) {
     Nodo<T>* actual = primero;
-	
+    bool empleadosEncontrados = false;
+
     while (actual != nullptr) {
-        if (actual->getDato().getAnioContratacion() == anio) {
+        if (actual->getDato().getAnioDeContratacion() == anio) {
             std::cout << actual->getDato() << std::endl;
+            empleadosEncontrados = true;
         }
         actual = actual->getSiguiente();
     }
-    std::cout << std::endl;
+
+    if (!empleadosEncontrados) {
+        std::cout << "No se encontraron empleados contratados en el anio " << anio << std::endl;
+    }
 }
+
+template<typename T>
+double ListaDoble<T>::sumaDeSueldosTotales(){
+    Nodo<T>* actual = primero;
+    double suma = 0.0;
+
+    while (actual != nullptr) {
+        suma += actual->getDato().getSalario();
+        actual = actual->getSiguiente();
+    }
+
+    return suma;
+}
+
 
