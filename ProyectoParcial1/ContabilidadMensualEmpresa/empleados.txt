@@ -38,3 +38,11 @@ Cedula:   1724976251
 Salario:  450
 Anio De Contratacion:  2000
 ---------------------------------
+Nombre:   SEBASTIAN
+Apellido: LASSO
+Edad:     20
+Cargo:    CEO
+Cedula:   1717572182
+Salario:  1500.5
+Anio De Contratacion:  2007
+---------------------------------

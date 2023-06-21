@@ -22,6 +22,7 @@ class ListaDoble{
 	public:
 		~ListaDoble();
 	    ListaDoble();
+	    
 	    void insertar(T);
 	    Nodo<T>* buscar(std::string);
 	    void eliminar(T);

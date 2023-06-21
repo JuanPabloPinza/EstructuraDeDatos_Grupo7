@@ -8,7 +8,7 @@
  Enunciado General: Programa De Contabilidad Mensual.
  ********************************/
 #include "ListaDoble.h"
-#include "Empleado.h"
+//#include "Empleado.h"
 #include <fstream>
 #include <iostream>
 
